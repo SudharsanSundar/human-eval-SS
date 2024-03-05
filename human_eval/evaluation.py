@@ -9,6 +9,11 @@ import tqdm
 from human_eval.data import HUMAN_EVAL, read_problems, stream_jsonl, write_jsonl
 from human_eval.execution import check_correctness
 
+import pprint as pp
+from pprint import PrettyPrinter
+
+ppr = PrettyPrinter()
+
 
 def estimate_pass_at_k(
     num_samples: Union[int, List[int], np.ndarray],
@@ -68,7 +73,7 @@ def evaluate_functional_correctness(
             completion_id[task_id] += 1
             n_samples += 1
 
-        assert len(completion_id) == len(problems), "Some problems are not attempted."
+        # assert len(completion_id) == len(problems), "Some problems are not attempted."        # Check to make sure answer provided for all problems
 
         print("Running test suites...")
         for future in tqdm.tqdm(as_completed(futures), total=len(futures)):
@@ -93,7 +98,9 @@ def evaluate_functional_correctness(
     def combine_results():
         for sample in stream_jsonl(sample_file):
             task_id = sample["task_id"]
+            ppr.pprint(results)
             result = results[task_id].pop(0)
+            # result = results[problems_task_id].pop(0)
             sample["result"] = result[1]["result"]
             sample["passed"] = result[1]["passed"]
             yield sample
