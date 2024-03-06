@@ -46,7 +46,6 @@ def generate_answers(model, questions, out_file_path_prefix='gpt3.5_codeOnlyProm
 def clean_extract(answer: str) -> str:
     # Gets rid of triple tick marks, "python" header, newlines
     output = answer[10:-4]
-
     return output
 
 
