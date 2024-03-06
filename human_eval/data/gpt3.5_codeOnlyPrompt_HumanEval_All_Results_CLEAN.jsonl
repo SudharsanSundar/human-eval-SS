@@ -1,3 +1,0 @@
-{"task_id": "HumanEval/0", "completion": "numbers.sort()\nfor i in range(len(numbers) - 1):\n    if abs(numbers[i] - numbers[i + 1]) < threshold:\n        return True\nreturn False"}
-{"task_id": "HumanEval/1", "completion": "paren_string = \"( ) (( )) (( )( ))\"\nresult = []\ncurrent_group = \"\"\nopen_braces = 0\n\nfor char in paren_string:\n    if char == \"(\":\n        open_braces += 1\n    elif char == \")\":\n        open_braces -= 1\n    current_group += char\n    \n    if open_braces == 0:\n        result.append(current_group.replace(\" \", \"\"))\n        current_group = \"\"\n\nresult"}
-{"task_id": "HumanEval/2", "completion": "number_str = str(number)\ninteger_part, decimal_part = number_str.split('.')\nresult = float('0.' + decimal_part)"}
