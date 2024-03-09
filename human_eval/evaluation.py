@@ -72,6 +72,8 @@ def evaluate_functional_correctness(
             futures.append(future)
             completion_id[task_id] += 1
             n_samples += 1
+            # if task_id == 'HumanEval/10': break
+            # if task_id == 20: break
 
         # assert len(completion_id) == len(problems), "Some problems are not attempted."        # Check to make sure answer provided for all problems
 
@@ -79,6 +81,10 @@ def evaluate_functional_correctness(
         for future in tqdm.tqdm(as_completed(futures), total=len(futures)):
             result = future.result()
             results[result["task_id"]].append((result["completion_id"], result))
+            # if result["task_id"] == 'HumanEval/10': break
+            # if result["task_id"] == 20: break
+
+    # print(results)
 
     # Calculate pass@k.
     total, correct = [], []
