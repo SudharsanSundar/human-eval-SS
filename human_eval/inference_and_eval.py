@@ -20,7 +20,7 @@ def generate_answers(model, questions, out_fp: str, limit=None) -> dict:
 
     counter = 0
 
-    for question in questions:
+    for question in tqdm.tqdm(questions):
         instruction = 'Please complete the function below based on the given function comment.' # maybe add: Please create a function using the given function name, and do not use a lamda function.
         code_prompt = questions[question]['prompt']
         # prompt = instruction + '\n' + code_prompt
@@ -108,15 +108,15 @@ def main():
     gpt3p5 = GPT()
     gpt4 = GPT(model='gpt-4-0125-preview')
 
-    mbpp_raw_problems_fp = '../data/mbpp_problems_raw.jsonl'
-    mbpp_partially_cleaned_fp = '../data/mbpp_problems_clean.jsonl'
-    mbpp_answers_raw_fp = '../data/gpt3.5_defaultPrompt_MBPP_All_Results.jsonl'
-    mbpp_answers = '../data/gpt3.5_defaultPrompt_MBPP_All_Results_CLEAN2.jsonl'
-    mbpp_results_fp = '../data/gpt3.5_defaultPrompt_MBPP_All_Results_CLEAN2.jsonl_results.jsonl'
+    mbpp_raw_problems_fp = '../data/mbpp-problems-raw-INFERENCE.jsonl'
+    mbpp_clean_problems_fp = '../data/mbpp-problems-clean-EVAL.jsonl'
 
-    # run_inference(gpt3p5)
+    mbpp_raw_answers_fp = '../data/mbpp-gpt4-defaultPrompt-rawAnswers.jsonl'
+    mbpp_clean_answers_fp = '../data/mbpp-gpt4-defaultPrompt-cleanAnswers.jsonl'
 
-    run_eval(clean_ans_fp='../data/gpt3.5CodeOnlyPromptJcTestCaseFull.jsonl_results.jsonl_results.jsonl_results.jsonl')
+    run_inference(gpt4, raw_problems_fp=mbpp_raw_problems_fp, raw_ans_fp=mbpp_raw_answers_fp, clean_ans_fp=mbpp_clean_answers_fp)
+
+    run_eval(clean_ans_fp=mbpp_clean_answers_fp, eval_problems_fp=mbpp_clean_problems_fp)
 
 
 if __name__ == "__main__":

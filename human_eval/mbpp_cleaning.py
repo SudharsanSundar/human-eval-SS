@@ -69,6 +69,19 @@ def fix_dumb_errors(problem_file_path: str, out_fp: str, answers_file_path: str)
     return new_problems
 
 
+# For creating code haystack, not relevant
+# def create_concat_of_all_mbpp_he_solns():
+#     human_eval = stream_jsonl('../data/HumanEval.jsonl')
+#     mbpp = stream_jsonl('../data/mbpp-problems-raw-INFERENCE.jsonl')
+#     all_funcs = ''
+#
+#     for line in human_eval:
+#         all_funcs += line['prompt'] + line['canonical_solution'] + '\n\n- / - / - /\n\n'
+#
+#     with open("human_eval_concat.txt", "w") as f:
+#         f.write(all_funcs)
+
+
 def main():
     gpt3p5 = GPT()
     gpt4 = GPT(model='gpt-4-0125-preview')
