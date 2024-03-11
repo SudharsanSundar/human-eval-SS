@@ -117,6 +117,7 @@ def main():
     run_inference(gpt4, raw_problems_fp=mbpp_raw_problems_fp, raw_ans_fp=mbpp_raw_answers_fp, clean_ans_fp=mbpp_clean_answers_fp)
 
     run_eval(clean_ans_fp=mbpp_clean_answers_fp, eval_problems_fp=mbpp_clean_problems_fp)
+    # evaluate_functional_correctness data/mbpp-gpt4-defaultPrompt-cleanAnswers.jsonl --problem_file=data/mbpp-problems-clean-EVAL.jsonl
 
 
 if __name__ == "__main__":

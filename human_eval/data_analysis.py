@@ -61,8 +61,10 @@ def main():
     mbpp_answers_raw_fp = '../data/gpt3.5_defaultPrompt_MBPP_All_Results.jsonl'
     mbpp_answers = '../data/gpt3.5_defaultPrompt_MBPP_All_Results_CLEAN2.jsonl'
     mbpp_results_fp = '../data/gpt3.5_defaultPrompt_MBPP_All_Results_CLEAN2.jsonl_results.jsonl'
+    mbpp_gpt4_results_fp = '../data/mbpp-gpt4-defaultPrompt-cleanAnswers.jsonl_results.jsonl'
 
     # NOTE: You should not have to run things in this file. Plz check w me/double check before running these to make sure you don't overwrite important things.
+    find_errors(mbpp_gpt4_results_fp)
 
 
 if __name__ == "__main__":
